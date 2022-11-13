@@ -19,15 +19,10 @@ def query_records():
     print(db)
     return jsonify(db)    
 
-@app.route('/data', methods=['GET'])
-def query_srecords():
-    fname = request.args.get('fname')
-    # lname = request.args.get('lname')
-    for item in db:
-        if item['fname'] == fname:
-            return jsonify({'Message':'name found!!!'})
-    return jsonify({'Message': 'name not found!!!'})
+@app.route('/data/<id>', methods=['GET'])
+def query_srecords(id=0):
 
+    return jsonify(db[id])
 
 if __name__ == '__main__':
     app.run(debug = True)
